@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormControl } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { DataService } from 'src/app/services/data.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-inventory-update',
@@ -54,10 +55,31 @@ export class InventoryUpdateComponent implements OnInit {
     return this.editPostForm.controls;
   }
   onPostEditFormSubmit() {
-    this.dataService.updateInventory(this.postId, this.editPostForm.value).subscribe(data => {
-      this.event.emit('OK');
-      this.bsModalRef.hide();
-    });
+    if (this.editPostForm.valid) {
+      this.dataService.updateInventory(this.postId, this.editPostForm.value).subscribe(data => {
+        swal.fire({
+          title: 'Update Inventory',
+          text: 'Updated Inventory Succesfully',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+          allowOutsideClick: false
+        })
+      
+        this.event.emit('OK');
+        this.bsModalRef.hide();
+      });
+      
+    } else {
+      swal.fire({
+        title: 'Update Inventory',
+        text: 'Updating Inventory Failed',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+      
+    }
+
   }
 
   onClose() {

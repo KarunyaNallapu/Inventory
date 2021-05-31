@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { DataService } from 'src/app/services/data.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-inventory-delete',
@@ -20,10 +21,30 @@ export class InventoryDeleteComponent implements OnInit {
 
   }
 
-  deletePost(postId: number) {
-    this.dataService.deleteInventory(postId).subscribe();
-    this.event.emit('OK');
-    this.bsModalRef.hide();
+  deletePost(del: number) {
+    if (this.postId != null || undefined) {
+      this.dataService.deleteInventory(del).subscribe();
+      swal.fire({
+        title: 'Delete Inventory',
+        text: 'Deleted Inventory Succesfully',
+        icon: 'success',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+      this.event.emit('OK');
+      this.bsModalRef.hide();
+      
+    } else {
+      swal.fire({
+        title: 'Delete Inventory',
+        text: 'Deleting Inventory Failed',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+        allowOutsideClick: false
+      })
+      
+    }
+
   }
 
   onClose() {

@@ -7,18 +7,18 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
-          <div class="form-group mb-1">
-            <label class="col-sm-2 control-label">ID</label>
+          <div class="form-group mb-1 ">
+            <label class="col-sm-2 control-label required-field">ID</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" formControlName="id"[ngClass]="{ 'is-invalid': f.id.touched && f.id.errors }" />
-              <div *ngIf=" f.id.errors" class="invalid-feedback">
+              <input type="text" class="form-control" formControlName="id"[ngClass]="{ 'is-invalid':submitted && f.id.touched && f.id.errors  }" />
+              <div *ngIf="submitted && f.id.errors" class="invalid-feedback">
                 <div *ngIf="f.id.errors.required">ID is required.</div>
             </div>
             </div>
           </div>
         
           <div class="form-group mb-1">
-            <label class="col-sm-2 control-label">Name</label>
+            <label class="col-sm-2 control-label required-field">Name</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" formControlName="name"[ngClass]="{ 'is-invalid': f.name.touched && f.name.errors }" />
               <div *ngIf=" f.name.errors" class="invalid-feedback">
@@ -27,7 +27,7 @@
             </div>
           </div>
           <div class="form-group mb-1">
-            <label class="col-sm-2 control-label">Description</label>
+            <label class="col-sm-2 control-label required-field">Description</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" formControlName="description" [ngClass]="{ 'is-invalid': f.description.touched && f.name.errors }"  />
               <div *ngIf=" f.description.errors" class="invalid-feedback">
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="form-group mb-1">
-            <label class="col-sm-2 control-label">Price</label>
+            <label class="col-sm-2 control-label required-field">Price</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" formControlName="price" [ngClass]="{ 'is-invalid': f.price.touched && f.price.errors }" />
               <div *ngIf=" f.price.errors" class="invalid-feedback">
@@ -45,11 +45,11 @@
             </div>
           </div>
           <div class="form-group mb-1">
-            <label class="col-sm-2 control-label">Stock</label>
+            <label class="col-sm-2 control-label required-field">Stock</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" formControlName="stock" [ngClass]="{ 'is-invalid': f.price.touched && f.price.errors }" />
-              <div *ngIf=" f.price.errors" class="invalid-feedback">
-                <div *ngIf="f.price.errors.required">Stock is required.</div>
+              <input type="text" class="form-control" formControlName="stock" [ngClass]="{ 'is-invalid': f.stock.touched && f.stock.errors }" />
+              <div *ngIf=" f.stock.errors" class="invalid-feedback">
+                <div *ngIf="f.stock.errors.required">Stock is required.</div>
             </div>
             </div>
           </div>
